@@ -1,4 +1,6 @@
-
+CREATE DATABASE IF NOT EXISTS softskill
+  CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE softskill;
 -- Drop table if it exists
 DROP TABLE IF EXISTS Users;
 

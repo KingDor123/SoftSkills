@@ -4,15 +4,19 @@ services:
     container_name: mysql_db
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: softskill
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}  
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
     ports:
       - '3306:3306'
     volumes:
       - db-data:/var/lib/mysql
       - ./backend/init-db:/docker-entrypoint-initdb.d:ro
+    env_file:
+      - .env
 
   backend:
     build: ./backend
