@@ -4,7 +4,7 @@ export class LlmRepository {
       baseUrl = process.env.OPENAI_BASE_URL ,
       apiKey  = process.env.OPENAI_API_KEY ,
     } = {}) {
-      this.baseUrl = String(baseUrl).replace(/\/+$/, ""); // הסר '/' בסוף
+      this.baseUrl = String(baseUrl).replace(/\/+$/, ""); 
       this.apiKey  = apiKey;
   
       console.log("[LlmRepository] init:", {
@@ -14,7 +14,7 @@ export class LlmRepository {
     }
   
     async chatCompletions({ model, messages, temperature = 0.7 }) {
-      const url = `${this.baseUrl}/chat/completions`; // <- ללא /v1
+      const url = `${this.baseUrl}/chat/completions`; 
       const body = { model, messages, temperature };
   
       console.log("[LlmRepository] Sending request:", { url, body });

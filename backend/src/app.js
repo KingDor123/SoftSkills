@@ -3,7 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
-import llmRoute from "./routes/llm.route.js";
+
 
 //import passport from 'passport';
 
@@ -11,7 +11,8 @@ import llmRoute from "./routes/llm.route.js";
 
 // routes
 import TestRouter from './routes/test.route.js';
-
+import llmRoute from "./routes/llm.route.js";
+import userRoute from "./routes/user.route.js";
 
 // passport config
 //import { initialize } from './auth/passport-config.js';
@@ -65,5 +66,14 @@ app.use((req, res, next) => {
 // Routes
 app.use('/api/test', TestRouter);
 app.use("/api/llm", llmRoute);
+app.use("/api/user", userRoute);
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error("Unhandled error:", err);
+  const status = err.status || 500;
+  res.status(status).json({ error: err.message || "Internal Server Error" });
+});
+
 
 export default app;
